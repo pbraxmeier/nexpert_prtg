@@ -31,7 +31,11 @@ Param(
 $SecPassword = ConvertTo-SecureString $Password -AsPlainText -Force
 $cred = new-object -typename System.Management.Automation.PSCredential ($UserName, $secPassword)
 
-Import-Module VMware.VimAutomation.Core >$Null
+#Import-Module VMware.VimAutomation.Core >$Null
+Import-Module "C:\Program Files (x86)\VMware\Infrastructure\PowerCLI\Modules\VMware.VimAutomation.Sdk\VMware.VimAutomation.Sdk.psd1"
+Import-Module "C:\Program Files (x86)\VMware\Infrastructure\PowerCLI\Modules\VMware.VimAutomation.Common\VMware.VimAutomation.Common.psd1"
+Import-Module "C:\Program Files (x86)\VMware\Infrastructure\PowerCLI\Modules\VMware.VimAutomation.Cis.Core\VMware.VimAutomation.Cis.Core.psd1"
+Import-Module "C:\Program Files (x86)\VMware\Infrastructure\PowerCLI\Modules\VMware.VimAutomation.Core\VMware.VimAutomation.Core.psd1"
 
 $global:textvar = ""
 
