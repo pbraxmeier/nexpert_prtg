@@ -18,6 +18,8 @@
 # '.\Powershell Script - VMWare - Active Snapshots.ps1' -ComputerName vcenter01 -UserName domain\Administrator -Password Password
 #
 # PRTG Parameters: -ComputerName %host -UserName %windowsdomain\%windowsuser -Password %windowspassword
+# If Connection to esx directly, set username and password for the device in the section linux and use the parameters
+# -ComputerName %host -Username %linuxuser -Password %linuxpassword
 # 
 # ------------------
 
