@@ -32,7 +32,7 @@ $SecPasswd  = ConvertTo-SecureString $Password -AsPlainText -Force
 $Credentials= New-Object System.Management.Automation.PSCredential ($UserName, $secpasswd)
 
 # hardcoded list that applies to all hosts
-$IgnoreScript = 'Google Update Service (gupdate),PRTG Probe Service'
+$IgnoreScript = 'VeeamVssSupport,Google Update Service (gupdate),PRTG Probe Service'
 $IgnoreCombined = @($IgnoreList) + @($IgnoreScript)
 
 $Ignore = $IgnoreCombined -Split ","
