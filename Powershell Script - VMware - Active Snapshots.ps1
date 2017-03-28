@@ -10,6 +10,8 @@
 # Original Script by https://kb.paessler.com/en/topic/29313-vmware-snapshots
 # Modified by Nexpert AG for use with PRTG Network Monitor
 #
+# This script runs on the PRTG probe. Install the VMware PowerCli on the Probe. 
+# Dont use powershell invoke command. further vcenter versions will be linux appliances.
 #
 # Example: 
 #
