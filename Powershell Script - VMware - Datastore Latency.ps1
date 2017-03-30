@@ -10,10 +10,12 @@
 # Original Script by http://blog.fedenko.info/2017/02/prtg-vmware-datastore-monitoring.html
 # Modified by Nexpert AG
 #
+# This script runs on the PRTG probe. Install the VMware PowerCli on the Probe. 
+# Dont use powershell invoke command. further vcenter versions will be linux appliances.
 #
 # Example: 
-#
-#
+# 
+# Create PRTG Sensor EXE/Script Advanced.
 #
 # '.\Powershell Script - VMWare - Datastore Latency.ps1' -ComputerName vcenter01 -UserName domain\Administrator -Password Password
 #
