@@ -1,4 +1,4 @@
-﻿#
+#
 #  _  _  ___ __  __ ___  ___  ___  _____     _    ___ 
 # | \| || __|\ \/ /| _ \| __|| _ \|_   _|   /_\  / __|
 # |  ` || _|  >  < |  _/| _| |   /  | |    / _ \| (_ |
@@ -10,25 +10,22 @@
 # Original Script by https://kb.paessler.com/en/topic/29313-vmware-snapshots
 # Modified by Nexpert AG for use with PRTG Network Monitor
 #
-# This script runs on the PRTG probe. Install the VMware PowerCli on the Probe. 
-# Dont use powershell invoke command. further vcenter versions will be linux appliances.
 #
 # Example: 
 #
 #
 #
-# '.\Powershell Script - VMWare - Active Snapshots.ps1' -ComputerName vcenter01 -UserName domain\Administrator -Password Password
+# '.\Powershell Script - VMWare - Active Snapshots.ps1' -ComputerName vcenter01 -UserName domain\Administrator -Password Password -Age 30
 #
-# PRTG Parameters: -ComputerName %host -UserName %windowsdomain\%windowsuser -Password %windowspassword
-# If Connection to esx directly, set username and password for the device in the section linux and use the parameters
-# -ComputerName %host -Username %linuxuser -Password %linuxpassword
+# PRTG Parameters: -ComputerName %host -UserName %windowsdomain\%windowsuser -Password %windowspassword -Age 30
 # 
 # ------------------
 
 Param(
-[string]$ComputerName = "vcenter01",
+[string]$ComputerName = "vcenter",
 [string]$UserName = "doamin\user",
-[string]$Password = 'password'
+[string]$Password = 'password',
+[string]$Age = '30'
 )
 
 #create credentials 
@@ -40,6 +37,9 @@ Import-Module "C:\Program Files (x86)\VMware\Infrastructure\PowerCLI\Modules\VMw
 Import-Module "C:\Program Files (x86)\VMware\Infrastructure\PowerCLI\Modules\VMware.VimAutomation.Common\VMware.VimAutomation.Common.psd1"
 Import-Module "C:\Program Files (x86)\VMware\Infrastructure\PowerCLI\Modules\VMware.VimAutomation.Cis.Core\VMware.VimAutomation.Cis.Core.psd1"
 Import-Module "C:\Program Files (x86)\VMware\Infrastructure\PowerCLI\Modules\VMware.VimAutomation.Core\VMware.VimAutomation.Core.psd1"
+
+
+                  
 
 $global:textvar = ""
 
@@ -60,7 +60,7 @@ function get-snaps{
     $vms = get-vm | sort name
     $vmsnaps = @()
     foreach($vm in $vms){
-    	$snap = Get-Snapshot $vm
+    	$snap = (Get-Snapshot $vm | Where {$_.Created -lt (Get-Date).AddDays(-$Age)})
     	if($snap){
 		  $vmsnaps += $vm
 		  $snapshots = Get-Snapshot $vm
@@ -110,5 +110,8 @@ write-host "</value>"
 write-host "<LimitMaxError>0</LimitMaxError>"
 write-host "<LimitMode>1</LimitMode>"
 write-host "</result>"
+write-host "<text>"
+write-host $env:computername
+write-host "</text>"
 write-host "</prtg>"
 }
