@@ -43,7 +43,7 @@ $cred = new-object -typename System.Management.Automation.PSCredential ($UserNam
 
 
 $ret = invoke-command -computer $ComputerName -Credential $cred -ArgumentList $Group -ScriptBlock {
-
+Import-Module activedirectory
 
 $Group = $args[0]
 
