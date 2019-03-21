@@ -1,4 +1,4 @@
-﻿#
+#
 #  _  _  ___ __  __ ___  ___  ___  _____     _    ___ 
 # | \| || __|\ \/ /| _ \| __|| _ \|_   _|   /_\  / __|
 # |  ` || _|  >  < |  _/| _| |   /  | |    / _ \| (_ |
@@ -20,7 +20,7 @@
 # PRTG Parameters: -ComputerName %host -UserName %windowsdomain\%windowsuser -Password %windowspassword -Age 30 -IgnoreList server1,server2,server3
 # 
 # ------------------
-
+$ErrorActionPreference = "Stop"
 Param(
 [string]$ComputerName = "vcenter",
 [string]$UserName = "Username",
