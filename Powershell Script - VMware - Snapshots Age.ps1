@@ -20,7 +20,7 @@
 # PRTG Parameters: -ComputerName %host -UserName %windowsdomain\%windowsuser -Password %windowspassword -Age 30 -IgnoreList server1,server2,server3
 # 
 # ------------------
-$ErrorActionPreference = "Stop"
+
 Param(
 [string]$ComputerName = "vcenter",
 [string]$UserName = "Username",
@@ -29,7 +29,7 @@ Param(
 [string]$Age = '30'
 )
 
-
+$ErrorActionPreference = "Stop"
 
 #create credentials 
 $SecPassword = ConvertTo-SecureString $Password -AsPlainText -Force
